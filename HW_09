@@ -12,7 +12,7 @@ def input_error(func):
             return "IndexError. Give me name and phone please."
         except NameError:
             return "Invalid input. Name should contain only letters."
-        except KeyError:
+        except TypeError:
             return "Invalid input. Phone number should contain only digits."
     return wrapper
 
@@ -22,7 +22,7 @@ def command_add(input_str):
     _, name, phone = input_str.split()
     name = name.title()
     if not phone.isdigit():
-        raise KeyError
+        raise TypeError
     if not name.isalpha():
         raise NameError 
     contact_list[name] = phone
@@ -33,7 +33,7 @@ def command_change(input_str):
     _, name, phone = input_str.split()
     name = name.title()
     if not phone.isdigit():
-        raise KeyError
+        raise TypeError
     if not name.isalpha():
         raise NameError 
     contact_list[name] = phone
